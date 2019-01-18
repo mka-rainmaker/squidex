@@ -237,7 +237,7 @@ namespace Squidex.Areas.IdentityServer.Controllers.Account
 
             if (!isLoggedIn)
             {
-                var email = externalLogin.Principal.FindFirst(ClaimTypes.Email).Value;
+                var email = externalLogin.Principal.FindFirst("preferred_username").Value;
 
                 user = await userManager.FindByEmailWithClaimsAsyncAsync(email);
 

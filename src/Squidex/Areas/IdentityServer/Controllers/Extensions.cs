@@ -20,7 +20,7 @@ namespace Squidex.Areas.IdentityServer.Controllers
         {
             var externalLogin = await signInManager.GetExternalLoginInfoAsync(expectedXsrf);
 
-            externalLogin.ProviderDisplayName = externalLogin.Principal.FindFirst(ClaimTypes.Email).Value;
+            externalLogin.ProviderDisplayName = externalLogin.Principal.FindFirst("preferred_username").Value;
 
             return externalLogin;
         }

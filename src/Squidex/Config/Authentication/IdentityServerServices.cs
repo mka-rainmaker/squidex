@@ -42,19 +42,6 @@ namespace Squidex.Config.Authentication
                     options.ApiSecret = null;
                     options.RequireHttpsMetadata = identityOptions.RequiresHttps;
                 });
-
-                authBuilder.AddOpenIdConnect(options =>
-                {
-                    options.Authority = apiAuthorityUrl;
-                    options.ClientId = Constants.InternalClientId;
-                    options.ClientSecret = Constants.InternalClientSecret;
-                    options.RequireHttpsMetadata = identityOptions.RequiresHttps;
-                    options.SaveTokens = true;
-                    options.Scope.Add(Constants.PermissionsScope);
-                    options.Scope.Add(Constants.ProfileScope);
-                    options.Scope.Add(Constants.RoleScope);
-                    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                });
             }
 
             return authBuilder;

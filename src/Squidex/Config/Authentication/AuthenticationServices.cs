@@ -5,6 +5,7 @@
 //  All rights reserved. Licensed under the MIT license.
 // ==========================================================================
 
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,13 +16,11 @@ namespace Squidex.Config.Authentication
         public static void AddMyAuthentication(this IServiceCollection services, IConfiguration config)
         {
             var identityOptions = config.GetSection("identity").Get<MyIdentityOptions>();
+            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+                .AddMyAzureActiveDirectoryAuthentication(services, config);
+
             services.AddAuthentication()
-                .AddMyAzureActiveDirectoryAuthentication(services, config)
-                .AddMyExternalGithubAuthentication(identityOptions)
-                .AddMyExternalGoogleAuthentication(identityOptions)
-                .AddMyExternalMicrosoftAuthentication(identityOptions)
-                .AddMyExternalOdic(identityOptions)
-                //.AddMyIdentityServerAuthentication(identityOptions, config)
+                .AddMyIdentityServerAuthentication(identityOptions, config)
                 .AddCookie();
         }
     }
