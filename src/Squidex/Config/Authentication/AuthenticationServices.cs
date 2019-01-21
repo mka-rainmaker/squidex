@@ -16,10 +16,8 @@ namespace Squidex.Config.Authentication
         public static void AddMyAuthentication(this IServiceCollection services, IConfiguration config)
         {
             var identityOptions = config.GetSection("identity").Get<MyIdentityOptions>();
-            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-                .AddMyAzureActiveDirectoryAuthentication(services, config);
-
             services.AddAuthentication()
+                .AddMyAzureActiveDirectoryAuthentication(services, config)
                 .AddMyIdentityServerAuthentication(identityOptions, config)
                 .AddCookie();
         }

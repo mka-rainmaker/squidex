@@ -319,6 +319,16 @@ a {
         }
     }
 
+    &-azuread {
+        @include button-variant($color-extern-microsoft, $color-extern-microsoft);
+
+        &:hover,
+        &:focus {
+            .icon-azuread {
+                color: darken($color-extern-microsoft-icon, 5%);
+            }
+        }
+    }
     // Special radio button.
     &-radio {
         & {
@@ -364,7 +374,6 @@ a {
             color: $color-theme-blue;
         }
     }
-
     // Special button groups
     &-group {
         .btn-toggle {
@@ -398,7 +407,6 @@ a {
             margin-left: -2px;
         }
     }
-
     // Link buttons only exists with blue text color in bootstrap. Provide them for all colors.
     &-text {
         & {

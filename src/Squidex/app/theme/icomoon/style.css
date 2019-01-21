@@ -201,6 +201,9 @@
 .icon-microsoft:before {
   content: "\e940";
 }
+.icon-azuread:before {
+    content: "\e940";
+}
 .icon-pause:before {
   content: "\e92f";
 }
